@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+>
+
+<f:view>
+    <h:head>
+        <title>Orders</title>
+    </h:head>
+
+    <h:body>
+
+        <!-- Без формы компоненты работать не будут -->
+        <h:form>
+            <p:panel >
+                <!--                <p:outputLabel for="inputTextId" value="Введите значение: "/>-->
+
+                <!--                <p:inputText id="inputTextId" title="Binding with ManagedBean"-->
+                <!--                             value="#{mainBean.inputText}">-->
+                <!--                </p:inputText>-->
+
+                <br/>
+
+                <p:commandButton value="Back" action="start"/>
+
+            </p:panel>
+        </h:form>
+
+    </h:body>
+</f:view>
+
+<f:view>
+    <h:head>
+        <title>JSF Title</title>
+    </h:head>
+
+    <h:body>
+        <!-- Без формы компоненты работать не будут -->
+        <h:form>
+            <p:panel header="Delete order">
+                <div class="card">
+                    <div class="ui-fluid p-formgrid p-grid">
+                        <div class="p-field p-col-12 p-md-3">
+                            <p:outputLabel value="Cofee: #{coffeeOrderCDI.coffee}     "/>
+                        </div>
+                        <br/>
+                        <div class="p-field p-col-12 p-md-3">
+                            <p:outputLabel  value="Amount: #{coffeeOrderCDI.amount}"/>
+                        </div>
+                        <br/>
+                        <div class="p-field p-col-12 p-md-3">
+                            <p:outputLabel  value="Delivery: #{coffeeOrderCDI.delivery}"/>
+                        </div>
+                        <br/>
+                        <div class="p-field p-col-12 p-md-3">
+                            <p:outputLabel  value="Delivery time: #{coffeeOrderCDI.deliveryTime}"/>
+                        </div>
+                        <br/>
+                        <div class="p-field p-col-12 p-md-3">
+                            <p:outputLabel  value="Cost: #{coffeeOrderCDI.cost}"/>
+                        </div>
+                        <p><p:commandButton value="Delete" action="#{coffeeOrderCDI.delete}"/></p>
+                    </div>
+                </div>
+            </p:panel>
+        </h:form>
+
+    </h:body>
+</f:view>
+
+<f:view>
+    <h:body>
+        <h:form>
+
+
+        </h:form>
+    </h:body>
+</f:view>
+
+</html>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+>
+
+<f:view>
+    <h:head>
+        <title>Orders</title>
+    </h:head>
+
+    <h:body>
+
+        <!-- Без формы компоненты работать не будут -->
+        <h:form>
+            <p:panel >
+                <!--                <p:outputLabel for="inputTextId" value="Введите значение: "/>-->
+
+                <!--                <p:inputText id="inputTextId" title="Binding with ManagedBean"-->
+                <!--                             value="#{mainBean.inputText}">-->
+                <!--                </p:inputText>-->
+
+                <br/>
+
+                <p:commandButton value="Back" action="start"/>
+
+            </p:panel>
+        </h:form>
+
+    </h:body>
+</f:view>
+
+<f:view>
+    <h:head>
+        <title>JSF Title</title>
+    </h:head>
+
+    <h:body>
+        <!-- Без формы компоненты работать не будут -->
+        <h:form>
+            <p:panel header="Order menu">
+                <div class="card">
+                    <div class="ui-fluid p-formgrid p-grid">
+                        <div class="p-field p-col-12 p-md-3">
+                            <p:outputLabel for="Coffee" value="Cofee:      "/>
+                            <p:selectOneMenu id="Coffee" value="#{coffeeOrderCDI.coffee}" converter="CoffeeConverter">
+                                <f:selectItems value="#{coffeeCDI.coffeeList()}"></f:selectItems>
+                            </p:selectOneMenu>
+                        </div>
+                        <br/>
+                        <div class="p-field p-col-12 p-md-3">
+                            <p:outputLabel for="amountt" value="Amount: "/>
+                            <p:inputText id="amountt"  value="#{coffeeOrderCDI.amount}"
+                                         required="true"
+                                         validator="#{coffeeOrderCDI.validateAmount}"/>
+                            <p:message for="amountt" display="icon"/>
+                        </div>
+                        <br/>
+                        <p:selectOneRadio id="deliveryy" value="#{coffeeOrderCDI.delivery}" unselectable="false">
+                            <f:selectItem itemLabel="Courier delivery" itemValue="Courier delivery"/>
+                            <f:selectItem itemLabel="Self delivery" itemValue="Self delivery"/>
+                        </p:selectOneRadio>
+                        <p:message for="deliveryy"/>
+                        <br/>
+                        <div class="p-field p-col-12 p-md-3">
+                            <p:outputLabel for="deliveryTime" value="Delivery time: "/>
+                            <p:inputText id="deliveryTime"  value="#{coffeeOrderCDI.deliveryTime}"
+                                         required="true"
+                                         validator="#{coffeeOrderCDI.validateDeliveryTime}"/>
+                            <p:message for="deliveryTime"/>
+                        </div>
+                        <p><p:messages/></p>
+                        <p><p:commandButton value="Make an order" action="#{coffeeOrderCDI.save}"/></p>
+                    </div>
+                </div>
+            </p:panel>
+        </h:form>
+
+    </h:body>
+</f:view>
+
+<f:view>
+    <h:body>
+        <h:form>
+
+
+    </h:form>
+    </h:body>
+</f:view>
+
+
+</html>

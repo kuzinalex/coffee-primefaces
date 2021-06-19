@@ -1,0 +1,63 @@
+<f:view>
+    <h:body>
+
+        <h:form>
+            <h2>Make an order</h2>
+            <table>
+                <tr>
+                    <td>Coffee:</td>
+                    <td>
+                        <h:selectOneMenu label="Service Level"
+                                         value="#{coffeeOrderCDI.coffee}" converter="CoffeeConverter">
+                            <f:selectItems value="#{coffeeCDI.coffeeList()}"></f:selectItems>
+                            <!--                        <f:selectItem itemLabel="Medium" itemValue="medium"/>-->
+                            <!--                        <f:selectItem itemLabel="Basic" itemValue="basic"/>-->
+                            <!--                        <f:selectItem itemLabel="Premium" itemValue="premium"/>-->
+                        </h:selectOneMenu>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>Amount:</td>
+                    <td>
+                        <h:inputText label="amount"
+                                     id="amount" value="#{coffeeOrderCDI.amount}"
+                                     required="true"
+                                     validator="#{coffeeOrderCDI.validateAmount}"/>
+                        <h:message for="amount"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Delivery:</td>
+                    <td>
+                        <h:selectOneRadio label="delivery"
+                                          id="delivery" value="#{coffeeOrderCDI.delivery}"
+                                          required="true">
+                            <h:outputLabel value="Courier/Self delivery"></h:outputLabel>
+                            <f:selectItem itemLable="Courier" itemValue="courier"/>
+                            <f:selectItem itemLable="SelfDelivery" itemValue="selfDelivery"/>
+                        </h:selectOneRadio>
+                        <h:message for="delivery"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Delivery time:</td>
+                    <td>
+                        <h:inputText label="Delivery time"
+                                     id="dob" value="#{coffeeOrderCDI.deliveryTime}" required="true"
+                                     validator="#{coffeeOrderCDI.validateDeliveryTime}"><!--                        <f:convertDateTime pattern="HH:MM-HH:MM"/>-->
+                        </h:inputText> (HH:MM-HH:MM)
+                        <h:message for="dob"/>
+                    </td>
+                </tr>
+            </table>
+            <p><h:messages/></p>
+            <p><h:commandButton value="Make an order" action="#{coffeeOrderCDI.save}"/></p>
+
+        </h:form>
+        <h:form>
+            <p><h:commandButton value="Back" action="start"/></p>
+        </h:form>
+
+    </h:body>
+</f:view>
