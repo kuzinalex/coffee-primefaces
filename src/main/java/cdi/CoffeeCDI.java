@@ -19,12 +19,21 @@ public class CoffeeCDI implements Serializable {
 
     @EJB
     private CoffeeEJB coffeeEJB;
+    private List<Coffee> coffees;
 
     @PostConstruct
     public void init() {
         this.coffeeEJB = new CoffeeEJB();
+        this.coffees=coffeeEJB.coffeeList();
     }
 
+    public List<Coffee> getCoffees() {
+        return coffees;
+    }
+
+    public void setCoffees(List<Coffee> coffees) {
+        this.coffees = coffees;
+    }
 
     public String getType() {
         return type;
@@ -47,6 +56,6 @@ public class CoffeeCDI implements Serializable {
     }
 
     public List<Coffee> coffeeList() {
-        return coffeeEJB.coffeeList();
+        return coffees;
     }
 }

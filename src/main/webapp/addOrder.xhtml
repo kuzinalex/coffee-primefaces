@@ -13,16 +13,8 @@
     </h:head>
 
     <h:body>
-
-        <!-- Без формы компоненты работать не будут -->
         <h:form>
             <p:panel >
-                <!--                <p:outputLabel for="inputTextId" value="Введите значение: "/>-->
-
-                <!--                <p:inputText id="inputTextId" title="Binding with ManagedBean"-->
-                <!--                             value="#{mainBean.inputText}">-->
-                <!--                </p:inputText>-->
-
                 <br/>
 
                 <p:commandButton value="Back" action="start"/>
@@ -39,7 +31,6 @@
     </h:head>
 
     <h:body>
-        <!-- Без формы компоненты работать не будут -->
         <h:form>
             <p:panel header="Order menu">
                 <div class="card">
@@ -55,7 +46,9 @@
                             <p:outputLabel for="amountt" value="Amount: "/>
                             <p:inputText id="amountt"  value="#{coffeeOrderCDI.amount}"
                                          required="true"
-                                         validator="#{coffeeOrderCDI.validateAmount}"/>
+                                         >
+                                <f:validateLength minimum="3"/>
+                            </p:inputText>
                             <p:message for="amountt" display="icon"/>
                         </div>
                         <br/>
