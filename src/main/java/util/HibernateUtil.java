@@ -1,3 +1,7 @@
+package util;
+
+import entities.Coffee;
+import entities.CoffeeOrder;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;

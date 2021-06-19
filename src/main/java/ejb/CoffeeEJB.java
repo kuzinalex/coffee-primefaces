@@ -1,5 +1,9 @@
+package ejb;
+
+import entities.Coffee;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import util.HibernateUtil;
 
 import javax.ejb.Stateless;
 import javax.persistence.Query;

@@ -1,3 +1,8 @@
+package cdi;
+
+import ejb.CoffeeEJB;
+import entities.Coffee;
+
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;

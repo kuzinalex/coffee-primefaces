@@ -1,3 +1,7 @@
+package entities;
+
+import entities.Coffee;
+
 import javax.persistence.*;
 
 @Entity

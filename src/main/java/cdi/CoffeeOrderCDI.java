@@ -1,3 +1,9 @@
+package cdi;
+
+import ejb.CoffeeEJB;
+import ejb.CoffeeOrderEJB;
+import entities.Coffee;
+import entities.CoffeeOrder;
 import org.primefaces.context.PrimeFacesContext;
 
 import javax.annotation.PostConstruct;

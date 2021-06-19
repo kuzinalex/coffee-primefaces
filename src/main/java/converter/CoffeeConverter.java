@@ -1,9 +1,14 @@
+package converter;
+
+import ejb.CoffeeEJB;
+import entities.Coffee;
+
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@FacesConverter("CoffeeConverter")
+@FacesConverter("converter.CoffeeConverter")
 public class CoffeeConverter implements Converter {
 
     CoffeeEJB coffeeEJB=new CoffeeEJB();
