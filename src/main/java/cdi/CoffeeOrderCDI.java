@@ -24,23 +24,19 @@ public class CoffeeOrderCDI {
     private Long id;
     private String delivery;
     private Integer amount;
-    private String deliveryTime = "10-11";
+    private String deliveryTime;
     private Integer cost;
     private Coffee coffee;
 
-    private List<Coffee> coffeeList;
 
     @EJB
     private CoffeeOrderEJB coffeeOrderEJB;
-    @EJB
-    private CoffeeEJB coffeeEJB;
 
     @PostConstruct
     public void init() {
-        this.coffeeEJB=new CoffeeEJB();
         this.coffeeOrderEJB = new CoffeeOrderEJB();
-        coffeeList=coffeeEJB.coffeeList();
     }
+
 
     public Long getId() {
         return id;
@@ -111,9 +107,7 @@ public class CoffeeOrderCDI {
             throw new ValidatorException(message);
         }
         int fromHours = Integer.parseInt(time.substring(0, 2));
-        int fromMinutes = Integer.parseInt(time.substring(3, 5));
         int toHours = Integer.parseInt(time.substring(6, 8));
-        int toMinutes = Integer.parseInt(time.substring(9));
 
         if (fromHours > toHours) {
             FacesMessage message = new FacesMessage("Invalid delivery time format.");
@@ -125,14 +119,9 @@ public class CoffeeOrderCDI {
         return coffeeOrderEJB.getOrders();
     }
 
-    public List<Coffee> coffeeList() {
-        final List<Coffee> coffeeList = new ArrayList<>();
-        orderList().stream().forEach(order -> coffeeList.add(order.getCoffee()));
-        return coffeeList;
-    }
 
     public String save() {
-        coffeeOrderEJB.saveOrUpdate(amount, delivery, deliveryTime, coffee,id);
+        coffeeOrderEJB.saveOrUpdate(amount, delivery, deliveryTime, coffee, id);
         id=null;
         return "start";
     }
@@ -158,6 +147,7 @@ public class CoffeeOrderCDI {
 
     public String delete(){
         coffeeOrderEJB.delete(id);
+        id=null;
         return "start";
     }
 }

@@ -21,7 +21,7 @@ public class CoffeeOrderEJB {
     }
 
     public void saveOrUpdate(Integer amount, String delivery, String deliveryTime, Coffee coffee, Long id) {
-        Transaction transaction = null;
+        Transaction transaction;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
 
@@ -46,7 +46,7 @@ public class CoffeeOrderEJB {
     }
 
     public void delete(Long id) {
-        Transaction transaction = null;
+        Transaction transaction;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
 

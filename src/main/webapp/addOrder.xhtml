@@ -38,21 +38,20 @@
                         <div class="p-field p-col-12 p-md-3">
                             <p:outputLabel for="Coffee" value="Cofee:      "/>
                             <p:selectOneMenu id="Coffee" value="#{coffeeOrderCDI.coffee}" converter="converter.CoffeeConverter">
-                                <f:selectItems value="#{coffeeCDI.coffeeList()}"></f:selectItems>
+                                <f:selectItems value="#{coffeeCDI.coffees}"></f:selectItems>
                             </p:selectOneMenu>
                         </div>
                         <br/>
                         <div class="p-field p-col-12 p-md-3">
                             <p:outputLabel for="amountt" value="Amount: "/>
                             <p:inputText id="amountt"  value="#{coffeeOrderCDI.amount}"
-                                         required="true"
-                                         >
-                                <f:validateLength minimum="3"/>
+                                         required="true" requiredMessage="Set amount of coffee you want to buy."
+                                         validator="#{coffeeOrderCDI.validateAmount}">
                             </p:inputText>
-                            <p:message for="amountt" display="icon"/>
+                            <p:message for="amountt"/>
                         </div>
                         <br/>
-                        <p:selectOneRadio id="deliveryy" value="#{coffeeOrderCDI.delivery}" unselectable="false">
+                        <p:selectOneRadio id="deliveryy" value="#{coffeeOrderCDI.delivery}" unselectable="false" required="true" requiredMessage="Choose delivery type.">
                             <f:selectItem itemLabel="Courier delivery" itemValue="Courier delivery"/>
                             <f:selectItem itemLabel="Self delivery" itemValue="Self delivery"/>
                         </p:selectOneRadio>
@@ -61,12 +60,12 @@
                         <div class="p-field p-col-12 p-md-3">
                             <p:outputLabel for="deliveryTime" value="Delivery time: "/>
                             <p:inputText id="deliveryTime"  value="#{coffeeOrderCDI.deliveryTime}"
-                                         required="true"
+                                         required="true" requiredMessage="Choose delivry time."
                                          validator="#{coffeeOrderCDI.validateDeliveryTime}"/>
                             <p:message for="deliveryTime"/>
                         </div>
-                        <p><p:messages/></p>
-                        <p><p:commandButton value="Make an order" action="#{coffeeOrderCDI.save}"/></p>
+<!--                        <p><p:messages/></p>-->
+                        <p><h:commandButton value="Make an order" action="#{coffeeOrderCDI.save}"/></p>
                     </div>
                 </div>
             </p:panel>

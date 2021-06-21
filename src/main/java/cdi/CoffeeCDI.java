@@ -16,10 +16,12 @@ public class CoffeeCDI implements Serializable {
 
     private String type;
     private Integer price;
+    private List<Coffee> coffees;
 
     @EJB
     private CoffeeEJB coffeeEJB;
-    private List<Coffee> coffees;
+
+
 
     @PostConstruct
     public void init() {
@@ -53,9 +55,5 @@ public class CoffeeCDI implements Serializable {
 
     public void add() {
         coffeeEJB.add(type, price);
-    }
-
-    public List<Coffee> coffeeList() {
-        return coffees;
     }
 }

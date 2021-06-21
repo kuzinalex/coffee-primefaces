@@ -8,8 +8,6 @@ import java.util.List;
 @Entity
 public class Coffee {
     @Id
-    //@GeneratedValue
-    //private Long id;
     private String type;
 
     private Integer price;
@@ -24,14 +22,6 @@ public class Coffee {
     public void setOrders(List<CoffeeOrder> coffeeOrders) {
         this.coffeeOrders = coffeeOrders;
     }
-
-//    public Long getId() {
-//        return id;
-//    }
-//
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
 
     public String getType() {
         return type;
@@ -56,15 +46,18 @@ public class Coffee {
 
     @Override
     public boolean equals(Object obj) {
-        if(obj==null){
+        if (this == obj)
+            return true;
+        if (obj == null)
             return false;
-        }
-        if (!(obj instanceof Coffee)){
+        if (getClass() != obj.getClass())
             return false;
-        }
-        Coffee coffee=(Coffee) obj;
-
-       return (this.type.equals(coffee.type));
-
+        Coffee coffee = (Coffee) obj;
+        if (type == null) {
+            if (coffee.type != null)
+                return false;
+        } else if (!type.equals(coffee.type))
+            return false;
+        return true;
     }
 }

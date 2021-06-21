@@ -8,12 +8,13 @@ import util.HibernateUtil;
 import javax.ejb.Stateless;
 import javax.persistence.Query;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Stateless
 public class CoffeeEJB {
 
     public void add(String type, Integer price){
-        Transaction transaction = null;
+        Transaction transaction;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             Coffee coffee = new Coffee();
@@ -23,16 +24,25 @@ public class CoffeeEJB {
             transaction.commit();
         }
     }
-    public List<Coffee> coffeeList(){
+
+    public List<Coffee> coffeeList() {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            Query query=session.createQuery("select coffee from Coffee coffee");
+            Query query = session.createQuery("select coffee from Coffee coffee");
             return query.getResultList();
         }
     }
 
-    public Coffee getByType(String type){
+    public List<String> coffeeListNames() {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            return session.find(Coffee.class,type);
+            Query query = session.createQuery("select coffee from Coffee coffee");
+            List<Coffee> coffees = query.getResultList();
+            return coffees.stream().map(Coffee::getType).collect(Collectors.toList());
+        }
+    }
+
+    public Coffee getByType(String type) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            return session.find(Coffee.class, type);
         }
     }
 
