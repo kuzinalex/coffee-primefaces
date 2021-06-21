@@ -1,6 +1,5 @@
 package cdi;
 
-import ejb.CoffeeEJB;
 import ejb.CoffeeOrderEJB;
 import entities.Coffee;
 import entities.CoffeeOrder;
@@ -14,7 +13,6 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
-import java.util.ArrayList;
 import java.util.List;
 
 @ManagedBean
@@ -75,7 +73,10 @@ public class CoffeeOrderCDI {
     }
 
     public void setCost(Integer cost) {
-        this.cost = cost;
+        this.cost = coffee.getPrice();
+        if (delivery.equals("Courier delivery")) {
+            this.cost += 100;
+        }
     }
 
     public Coffee getCoffee() {

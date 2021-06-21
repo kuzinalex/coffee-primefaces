@@ -59,16 +59,19 @@
                         <br/>
                         <div class="p-field p-col-12 p-md-3">
                             <p:outputLabel for="deliveryTime" value="Delivery time: "/>
-                            <p:inputText id="deliveryTime"  value="#{coffeeOrderCDI.deliveryTime}"
+                            <p:inputText id="deliveryTime" value="#{coffeeOrderCDI.deliveryTime}"
                                          required="true" requiredMessage="Choose delivry time."
                                          validator="#{coffeeOrderCDI.validateDeliveryTime}"/>
                             <p:message for="deliveryTime"/>
                         </div>
-<!--                        <p><p:messages/></p>-->
-                        <p><h:commandButton value="Make an order" action="#{coffeeOrderCDI.save}"/></p>
+                        <!--                        <p><p:messages/></p>-->
+                        <p><p:commandButton value="Make an order" action="#{coffeeOrderCDI.save}" ajax="false">
+                        </p:commandButton></p>
+
                     </div>
                 </div>
             </p:panel>
+
         </h:form>
 
     </h:body>
